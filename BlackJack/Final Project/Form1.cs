@@ -30,7 +30,7 @@ namespace Final_Project
             10, 10, 10, 10,
             10, 10, 10, 10,
             10, 10, 10, 10};
-        List<Int32> cardPlaced = new List<Int32>();
+        List<PictureBox> cardPlaced = new List<PictureBox>();
         int card1, card2, card3, card4, stack = 100, playerScore = 0, dealerScore = 0;
         int posX = 66, posY = 206, hit = 0;
         bool play = false;
@@ -206,16 +206,16 @@ namespace Final_Project
                 switch (hit)
                 {
                     case 0:
-                        posX += 40;
+                        posX += 20;
                         hit++;
                         break;
                     case 1:
-                        posX -= 40;
-                        posY -= 40;
+                        posX -= 20;
+                        //posY -= 40;
                         hit = 0;
                         break;
                 }
-                
+                cardPlaced.Add(newCard);
             }
         }
     }
