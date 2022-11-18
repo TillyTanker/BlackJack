@@ -30,7 +30,9 @@ namespace Final_Project
             10, 10, 10, 10,
             10, 10, 10, 10,
             10, 10, 10, 10};
-        List<PictureBox> cardPlaced = new List<PictureBox>();
+        List<Int32> cardPlaced = new List<Int32>();
+        List<PictureBox> onBoard = new List<PictureBox>();
+        
         int card1, card2, card3, card4, stack = 100, playerScore = 0, dealerScore = 0;
         int posX = 66, posY = 206, hit = 0;
         bool play = false;
@@ -215,7 +217,7 @@ namespace Final_Project
                         hit = 0;
                         break;
                 }
-                cardPlaced.Add(newCard);
+                onBoard.Add(newCard);
             }
         }
     }
