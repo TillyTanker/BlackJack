@@ -61,7 +61,7 @@ namespace Final_Project
             // 
             // Card2
             // 
-            this.Card2.Location = new System.Drawing.Point(158, 320);
+            this.Card2.Location = new System.Drawing.Point(158, 389);
             this.Card2.Name = "Card2";
             this.Card2.Size = new System.Drawing.Size(72, 106);
             this.Card2.TabIndex = 3;
@@ -70,7 +70,7 @@ namespace Final_Project
             // 
             // Card1
             // 
-            this.Card1.Location = new System.Drawing.Point(66, 320);
+            this.Card1.Location = new System.Drawing.Point(66, 389);
             this.Card1.Name = "Card1";
             this.Card1.Size = new System.Drawing.Size(72, 106);
             this.Card1.TabIndex = 2;
@@ -88,7 +88,7 @@ namespace Final_Project
             // 
             // PlayBtn
             // 
-            this.PlayBtn.Location = new System.Drawing.Point(570, 305);
+            this.PlayBtn.Location = new System.Drawing.Point(570, 374);
             this.PlayBtn.Name = "PlayBtn";
             this.PlayBtn.Size = new System.Drawing.Size(131, 24);
             this.PlayBtn.TabIndex = 5;
@@ -98,7 +98,7 @@ namespace Final_Project
             // 
             // HitBtn
             // 
-            this.HitBtn.Location = new System.Drawing.Point(570, 335);
+            this.HitBtn.Location = new System.Drawing.Point(570, 404);
             this.HitBtn.Name = "HitBtn";
             this.HitBtn.Size = new System.Drawing.Size(131, 24);
             this.HitBtn.TabIndex = 6;
@@ -108,7 +108,7 @@ namespace Final_Project
             // 
             // StandBtn
             // 
-            this.StandBtn.Location = new System.Drawing.Point(570, 365);
+            this.StandBtn.Location = new System.Drawing.Point(570, 434);
             this.StandBtn.Name = "StandBtn";
             this.StandBtn.Size = new System.Drawing.Size(131, 24);
             this.StandBtn.TabIndex = 7;
@@ -130,11 +130,12 @@ namespace Final_Project
             // 
             this.labelPlayerScore.AutoSize = true;
             this.labelPlayerScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelPlayerScore.Location = new System.Drawing.Point(256, 351);
+            this.labelPlayerScore.Location = new System.Drawing.Point(256, 420);
             this.labelPlayerScore.Name = "labelPlayerScore";
             this.labelPlayerScore.Size = new System.Drawing.Size(36, 39);
             this.labelPlayerScore.TabIndex = 9;
             this.labelPlayerScore.Text = "0";
+            this.labelPlayerScore.Click += new System.EventHandler(this.labelPlayerScore_Click);
             // 
             // labelDealerScore
             // 
@@ -150,16 +151,17 @@ namespace Final_Project
             // 
             this.labelStack.AutoSize = true;
             this.labelStack.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelStack.Location = new System.Drawing.Point(551, 402);
+            this.labelStack.Location = new System.Drawing.Point(551, 471);
             this.labelStack.Name = "labelStack";
             this.labelStack.Size = new System.Drawing.Size(196, 39);
             this.labelStack.TabIndex = 11;
             this.labelStack.Text = "Stack: $100";
+            this.labelStack.Click += new System.EventHandler(this.labelStack_Click);
             // 
             // numericUpDownBet
             // 
             this.numericUpDownBet.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numericUpDownBet.Location = new System.Drawing.Point(728, 330);
+            this.numericUpDownBet.Location = new System.Drawing.Point(728, 399);
             this.numericUpDownBet.Name = "numericUpDownBet";
             this.numericUpDownBet.Size = new System.Drawing.Size(60, 30);
             this.numericUpDownBet.TabIndex = 12;
@@ -169,18 +171,19 @@ namespace Final_Project
             // 
             this.labelBet.AutoSize = true;
             this.labelBet.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelBet.Location = new System.Drawing.Point(735, 293);
+            this.labelBet.Location = new System.Drawing.Point(735, 362);
             this.labelBet.Name = "labelBet";
             this.labelBet.Size = new System.Drawing.Size(41, 25);
             this.labelBet.TabIndex = 13;
             this.labelBet.Text = "Bet";
+            this.labelBet.Click += new System.EventHandler(this.labelBet_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Green;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 519);
             this.Controls.Add(this.labelBet);
             this.Controls.Add(this.numericUpDownBet);
             this.Controls.Add(this.labelStack);
