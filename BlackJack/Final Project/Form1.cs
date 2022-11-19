@@ -31,10 +31,12 @@ namespace Final_Project
             10, 10, 10, 10,
             10, 10, 10, 10};
         List<Int32> cardPlaced = new List<Int32>();
+        List<Int32> playerCards = new List<Int32>();
+        List<Int32> dealerCards = new List<Int32>();
         List<PictureBox> onBoard = new List<PictureBox>();
         
         int card1, card2, card3, card4, stack = 100, playerScore = 0, dealerScore = 0, bet = 0;
-        int posX = 66, posY = 275, hit = 0, dPosX = 66, dPosY = 136;
+        int posX = 66, posY = 275, dPosX = 66, dPosY = 136;
         bool play = false, bust = false;
 
         const string dir = @"..\..\.\Cards\Cards\";
@@ -205,11 +207,40 @@ namespace Final_Project
 
                 cardPlaced.Add(nextCard);
                 onBoard.Add(newCard);
-                dealerScore += cardValues[nextCard];
+                dealerScore = 0;
+                dealerCards.Add(nextCard);
+                for (int i = 0; i < dealerCards.Count; i++)
+                {
+                    if (cardValues[dealerCards[i]] == 11)
+                    {
+                        if (i != dealerCards.Count - 1)
+                        {
+                            int temp = dealerCards[i];
+                            dealerCards.RemoveAt(i);
+                            dealerCards.Add(temp);
+                            i--;
+                        }
+                        else
+                        {
+                            if (dealerScore + 11 > 21)
+                            {
+                                dealerScore += 1;
+                            }
+                            else
+                            {
+                                dealerScore += 11;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        dealerScore += cardValues[dealerCards[i]];
+                    }
+
+                }
                 labelDealerScore.Text = dealerScore.ToString();
-
         }
-
 
         private void startEvents()
         {
@@ -229,6 +260,8 @@ namespace Final_Project
             }
             cardPlaced.Clear();
             onBoard.Clear();
+            playerCards.Clear();
+            dealerCards.Clear();
             posX = 66;
             dPosX = 66;
             Dcard2.Hide();
@@ -242,12 +275,18 @@ namespace Final_Project
 
         private void PlayBtn_Click(object sender, EventArgs e)
         {
+            if (bet == 0)
+            {
+                MessageBox.Show("Enter a bet");
+                return;
+            }
             // events once play begins
             startEvents();
 
             // gets random card
             card1 = random.Next(0, 51); card2 = random.Next(0, 51);
             card3 = random.Next(0, 51); card4 = random.Next(0, 51);
+            cardPlaced.Add(card1);
             // verifies card is not already on board
             do
             {
@@ -290,41 +329,44 @@ namespace Final_Project
             Card2.ImageLocation = cardPath[card4];
             Card2.SizeMode = PictureBoxSizeMode.Zoom;
 
-            if (cardValues[card3] == 11 || cardValues[card4] == 11)
-            {
-                if (cardValues[card3] == 11)
-                {
-                    playerScore += 11;
-                    getPlayerScore(card4);
-                }
-                else
-                {
-                    playerScore += 11;
-                    getPlayerScore(card3);
-                }
-            }
-            else
-            {
-                getPlayerScore(card3);
-                getPlayerScore(card4);
-            }
+            dealerCards.Add(card1); dealerCards.Add(card2);
+            getPlayerScore(card3);
+            getPlayerScore(card4);
 
         }
 
         private void getPlayerScore(int card) {
-            if (cardValues[card] == 11)
+            playerScore = 0;
+            playerCards.Add(card);
+            for(int i = 0; i < playerCards.Count; i++)
             {
-                if(playerScore + 11 > 21)
+                if (cardValues[playerCards[i]] == 11)
                 {
-                    playerScore += 1;
-                    labelPlayerScore.Text = playerScore.ToString();
+                    if(i != playerCards.Count - 1)
+                    {
+                        int temp = playerCards[i];
+                        playerCards.RemoveAt(i);
+                        playerCards.Add(temp);
+                        i--;
+                    }
+                    else
+                    {
+                        if (playerScore + 11 > 21)
+                        {
+                            playerScore += 1;
+                        }
+                        else
+                        {
+                            playerScore += 11;
+                        }
+                    }
                 }
+                else
+                {
+                    playerScore += cardValues[playerCards[i]];
+                }     
             }
-            else
-            {
-                playerScore += cardValues[card];
-                labelPlayerScore.Text = playerScore.ToString();
-            }
+            labelPlayerScore.Text = playerScore.ToString();
             if(playerScore > 21)
             {
                 bust = true;
@@ -367,20 +409,6 @@ namespace Final_Project
 
                 posX += 20;
 
-                /* up down stacking
-                switch (hit)
-                {
-                    case 0:
-                        posX += 20;
-                        hit++;
-                        break;
-                    case 1:
-                        posX -= 20;
-                        posY -= 40;
-                        hit = 0;
-                        break;
-                }
-                */
                 cardPlaced.Add(nextCard);
                 onBoard.Add(newCard);
                 getPlayerScore(nextCard);
